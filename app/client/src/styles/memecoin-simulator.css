@@ -1,0 +1,1100 @@
+/* Import pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Transition Screen */
+.memecoin-transition-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+.memecoin-transition-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(14px, 2.5vw, 20px);
+  color: #ff1493 !important;
+  text-shadow: 
+    0 0 10px #ff1493,
+    0 0 20px #ff1493,
+    0 0 30px #ff1493 !important;
+  animation: textGlow 1s ease-in-out infinite alternate;
+}
+
+/* Main Container */
+.memecoin-simulator-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Background */
+.memecoin-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.memecoin-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(1px) brightness(0.7);
+}
+
+/* Header */
+.memecoin-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border-bottom: 2px solid #ff1493;
+  box-shadow: 0 0 20px rgba(255, 20, 147, 0.6);
+  backdrop-filter: blur(10px);
+  min-height: 70px;
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid #ff1493;
+  border-radius: 10px;
+  color: #ff1493;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 10px rgba(255, 20, 147, 0.3),
+    inset 0 0 10px rgba(255, 20, 147, 0.1);
+}
+
+.back-btn:hover {
+  background: rgba(255, 20, 147, 0.15);
+  box-shadow: 
+    0 0 20px rgba(255, 20, 147, 0.5),
+    0 0 40px rgba(255, 20, 147, 0.2),
+    inset 0 0 15px rgba(255, 20, 147, 0.2);
+  transform: scale(1.05);
+}
+
+.game-title {
+  font-size: clamp(14px, 2.5vw, 20px);
+  color: #ff1493;
+  text-shadow: 
+    0 0 10px #ff1493,
+    0 0 20px #ff1493,
+    0 0 30px #ff1493;
+  margin: 0;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+  text-align: center;
+  flex: 1;
+  padding: 0 20px;
+}
+
+/* Main Content */
+.memecoin-content {
+  position: absolute;
+  top: 85px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* Chart Panel */
+.chart-panel {
+  flex: 2;
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff1493;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 
+    0 0 25px rgba(255, 20, 147, 0.4),
+    inset 0 0 20px rgba(255, 20, 147, 0.1);
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 20, 147, 0.05) 50%, transparent 70%);
+  pointer-events: none;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.chart-container {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Chart Placeholder */
+.chart-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.start-trading-text {
+  text-align: center;
+  color: #ff1493;
+  animation: tradingPrompt 2s ease-in-out infinite;
+}
+
+.trading-prompt {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(16px, 3vw, 24px);
+  margin-bottom: 15px;
+  text-shadow: 
+    0 0 10px #ff1493,
+    0 0 20px #ff1493,
+    0 0 30px #ff1493;
+}
+
+.trading-subtitle {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(10px, 1.5vw, 14px);
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  max-width: 300px;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.trading-warning {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(8px, 1.2vw, 12px);
+  color: #ff6b35;
+  text-shadow: 0 0 5px #ff6b35;
+  animation: warningPulse 1.5s ease-in-out infinite;
+  margin-top: 10px;
+}
+
+/* Candlestick Chart */
+.candlestick-chart {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  margin-bottom: 10px;
+}
+
+.volume-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.volume-label {
+  color: #ffffff;
+  font-size: 12px;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.volume-value {
+  color: #ff0000;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.volume-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.candlesticks-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1px;
+  padding: 20px 10px;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 300px;
+}
+
+.candlesticks-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.candlesticks-container::-webkit-scrollbar-track {
+  background: rgba(255, 20, 147, 0.1);
+  border-radius: 3px;
+}
+
+.candlesticks-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 20, 147, 0.5);
+  border-radius: 3px;
+}
+
+.candlesticks-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 20, 147, 0.7);
+}
+
+.candlestick-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 16px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.candlestick {
+  position: relative;
+  width: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.candlestick-wick {
+  position: absolute;
+  width: 3px;
+  background: currentColor;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 1px;
+}
+
+.candlestick-wick.green {
+  color: #00ff00;
+  box-shadow: 0 0 4px #00ff00;
+}
+
+.candlestick-wick.red {
+  color: #ff0000;
+  box-shadow: 0 0 4px #ff0000;
+}
+
+.candlestick-body {
+  position: absolute;
+  width: 8px;
+  background: currentColor;
+  z-index: 2;
+  border-radius: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.candlestick-body.green {
+  color: #00ff00;
+  background: linear-gradient(180deg, #00ff00 0%, #00cc00 100%);
+  box-shadow: 
+    0 0 6px #00ff00,
+    inset 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.candlestick-body.red {
+  color: #ff0000;
+  background: linear-gradient(180deg, #ff0000 0%, #cc0000 100%);
+  box-shadow: 
+    0 0 6px #ff0000,
+    inset 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.candle-volume {
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 5px;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.chart-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.grid-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Trading Panel */
+.trading-panel {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: calc(100vh - 125px);
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.trading-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.trading-panel::-webkit-scrollbar-track {
+  background: rgba(255, 20, 147, 0.1);
+  border-radius: 3px;
+}
+
+.trading-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 20, 147, 0.5);
+  border-radius: 3px;
+}
+
+.trading-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 20, 147, 0.7);
+}
+
+/* Price Display */
+.price-display {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff1493;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 
+    0 0 20px rgba(255, 20, 147, 0.4),
+    inset 0 0 15px rgba(255, 20, 147, 0.1);
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+}
+
+.price-display::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff1493, transparent);
+  animation: priceGlow 2s ease-in-out infinite;
+}
+
+.current-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.price-label {
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.price-value {
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.price-value.positive {
+  color: #00ff00;
+}
+
+.price-value.negative {
+  color: #ff0000;
+}
+
+.price-change {
+  text-align: center;
+}
+
+.change-value {
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.change-value.positive {
+  color: #00ff00;
+}
+
+.change-value.negative {
+  color: #ff0000;
+}
+
+/* Account Info */
+.account-info {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff1493;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 
+    0 0 20px rgba(255, 20, 147, 0.4),
+    inset 0 0 15px rgba(255, 20, 147, 0.1);
+  backdrop-filter: blur(5px);
+  position: relative;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  color: #ffffff;
+}
+
+.info-value {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.info-label.positive,
+.info-value.positive {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.info-label.negative,
+.info-value.negative {
+  color: #ff0000;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+/* Trading Controls */
+.trading-controls {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff1493;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 
+    0 0 20px rgba(255, 20, 147, 0.4),
+    inset 0 0 15px rgba(255, 20, 147, 0.1);
+  backdrop-filter: blur(5px);
+  position: relative;
+}
+
+.trade-input-group {
+  margin-bottom: 15px;
+}
+
+.trade-input {
+  width: 100%;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid #ff1493;
+  border-radius: 8px;
+  color: #ffffff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  text-align: center;
+}
+
+.trade-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 20, 147, 0.5);
+}
+
+.trade-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.trade-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.buy-button,
+.sell-button {
+  flex: 1;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px currentColor;
+}
+
+.buy-button {
+  background: linear-gradient(45deg, #00ff00, #00cc00);
+  color: #000000;
+  border: 2px solid #00ff00;
+}
+
+.buy-button:hover:not(:disabled) {
+  background: linear-gradient(45deg, #00cc00, #009900);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+  transform: translateY(-2px);
+}
+
+.sell-button {
+  background: linear-gradient(45deg, #ff0000, #cc0000);
+  color: #ffffff;
+  border: 2px solid #ff0000;
+}
+
+.sell-button:hover:not(:disabled) {
+  background: linear-gradient(45deg, #cc0000, #990000);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+  transform: translateY(-2px);
+}
+
+.buy-button:disabled,
+.sell-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Order History */
+.order-history {
+  background: rgba(0, 0, 0, 0.95);
+  border: 2px solid #ff1493;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 
+    0 0 20px rgba(255, 20, 147, 0.4),
+    inset 0 0 15px rgba(255, 20, 147, 0.1);
+  backdrop-filter: blur(5px);
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.history-title {
+  color: #ff1493;
+  font-size: 14px;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 5px #ff1493;
+}
+
+.history-table {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 10px;
+}
+
+.history-header {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1fr 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid #ff1493;
+  color: #ff1493;
+  font-weight: bold;
+  text-shadow: 0 0 3px #ff1493;
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1fr 1fr;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 20, 147, 0.3);
+  color: #ffffff;
+}
+
+.history-row.buy {
+  background: rgba(0, 255, 0, 0.1);
+}
+
+.history-row.sell {
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.history-row .buy {
+  color: #00ff00;
+  text-shadow: 0 0 3px #00ff00;
+}
+
+.history-row .sell {
+  color: #ff0000;
+  text-shadow: 0 0 3px #ff0000;
+}
+
+.no-orders {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  font-style: italic;
+}
+
+/* Result Modal */
+.result-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.result-modal {
+  background: rgba(0, 0, 0, 0.95);
+  border: 3px solid #ff1493;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
+  animation: modalSlideIn 0.5s ease-out;
+}
+
+.result-title {
+  font-size: 24px;
+  color: #ff1493;
+  margin: 0 0 20px 0;
+  text-shadow: 0 0 10px #ff1493;
+  animation: titleGlow 1s ease-in-out infinite alternate;
+}
+
+.result-content {
+  margin-bottom: 30px;
+}
+
+.result-message {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.result-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 20, 147, 0.3);
+  font-size: 12px;
+}
+
+.stat-row span:first-child {
+  color: #ffffff;
+}
+
+.stat-row span:last-child {
+  font-weight: bold;
+}
+
+.stat-row .positive {
+  color: #00ff00;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.stat-row .negative {
+  color: #ff0000;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+.result-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.play-again-button,
+.back-to-casino-button {
+  padding: 12px 20px;
+  border: 2px solid #ff1493;
+  border-radius: 8px;
+  background: rgba(255, 20, 147, 0.2);
+  color: #ff1493;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px #ff1493;
+}
+
+.play-again-button:hover,
+.back-to-casino-button:hover {
+  background: rgba(255, 20, 147, 0.4);
+  box-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes textGlow {
+  from { text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493; }
+  to { text-shadow: 0 0 15px #ff1493, 0 0 25px #ff1493, 0 0 35px #ff1493; }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 10px #ff1493, 0 0 20px #ff1493, 0 0 30px #ff1493; }
+  to { text-shadow: 0 0 15px #ff1493, 0 0 25px #ff1493, 0 0 35px #ff1493; }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes priceGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes tradingPrompt {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes warningPulse {
+  0%, 100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .memecoin-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .chart-panel {
+    flex: none;
+    height: 300px;
+  }
+  
+  .trading-panel {
+    flex: none;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .memecoin-header {
+    padding: 12px 15px;
+    flex-direction: row;
+    gap: 10px;
+    min-height: 60px;
+  }
+  
+  .back-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+  
+  .game-title {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+  
+  .memecoin-content {
+    top: 75px;
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .chart-panel {
+    height: 250px;
+    padding: 15px;
+  }
+  
+  .trading-prompt {
+    font-size: 14px;
+  }
+  
+  .trading-subtitle {
+    font-size: 10px;
+    max-width: 250px;
+  }
+  
+  .trading-warning {
+    font-size: 8px;
+  }
+  
+  .candlesticks-container {
+    gap: 1px;
+    min-height: 250px;
+  }
+  
+  .candlestick-container {
+    min-width: 14px;
+  }
+  
+  .candlestick {
+    width: 8px;
+  }
+  
+  .candlestick-body {
+    width: 5px;
+  }
+  
+  .candlestick-wick {
+    width: 1px;
+  }
+  
+  .candle-volume {
+    font-size: 6px;
+  }
+  
+  .trading-panel {
+    gap: 12px;
+    min-width: 280px;
+  }
+  
+  .price-display,
+  .account-info,
+  .trading-controls,
+  .order-history {
+    padding: 15px;
+  }
+  
+  .trade-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .buy-button,
+  .sell-button {
+    padding: 12px;
+    font-size: 11px;
+  }
+  
+  .result-modal {
+    padding: 20px;
+    margin: 20px;
+  }
+  
+  .result-actions {
+    flex-direction: column;
+  }
+  
+  .history-header,
+  .history-row {
+    grid-template-columns: 1fr 0.8fr 1fr 1fr;
+    gap: 5px;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .memecoin-header {
+    padding: 8px 10px;
+    min-height: 50px;
+  }
+  
+  .back-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  
+  .game-title {
+    font-size: 12px;
+    padding: 0 8px;
+  }
+  
+  .memecoin-content {
+    top: 65px;
+    padding: 8px;
+    gap: 8px;
+  }
+  
+  .chart-panel {
+    height: 180px;
+    padding: 10px;
+  }
+  
+  .trading-prompt {
+    font-size: 12px;
+  }
+  
+  .trading-subtitle {
+    font-size: 8px;
+    max-width: 200px;
+  }
+  
+  .trading-warning {
+    font-size: 7px;
+  }
+  
+  .candlesticks-container {
+    gap: 1px;
+    min-height: 180px;
+  }
+  
+  .candlestick-container {
+    min-width: 12px;
+  }
+  
+  .candlestick {
+    width: 6px;
+  }
+  
+  .candlestick-body {
+    width: 4px;
+  }
+  
+  .candlestick-wick {
+    width: 1px;
+  }
+  
+  .candle-volume {
+    font-size: 5px;
+  }
+  
+  .volume-label,
+  .volume-value {
+    font-size: 10px;
+  }
+  
+  .trading-panel {
+    min-width: 250px;
+    gap: 8px;
+  }
+  
+  .price-display,
+  .account-info,
+  .trading-controls,
+  .order-history {
+    padding: 12px;
+  }
+  
+  .info-row {
+    font-size: 9px;
+    margin-bottom: 8px;
+  }
+  
+  .trade-input {
+    font-size: 9px;
+    padding: 8px;
+  }
+  
+  .buy-button,
+  .sell-button {
+    font-size: 9px;
+    padding: 10px;
+  }
+  
+  .history-header,
+  .history-row {
+    font-size: 7px;
+    gap: 3px;
+  }
+  
+  .history-title {
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+} 

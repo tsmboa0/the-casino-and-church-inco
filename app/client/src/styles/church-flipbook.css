@@ -1,0 +1,692 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   SACRED SCRIPTURE - Illuminated Manuscript FlipBook
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Press+Start+2P&display=swap');
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BOOK CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.sacred-flipbook {
+  position: relative;
+  width: min(800px, 95vw);
+  height: min(500px, 65vh);
+  margin-bottom: 80px; /* Space for nav container and page indicator */
+  touch-action: pan-y; /* Allow vertical scroll but capture horizontal for swipe */
+}
+
+.book-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 2000px;
+}
+
+/* Ornate book border frame */
+.book-frame {
+  position: absolute;
+  inset: -15px;
+  border: 4px solid #b8860b;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+  box-shadow: 
+    0 0 30px rgba(255, 215, 0, 0.2),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Decorative corner ornaments */
+.book-frame::before,
+.book-frame::after {
+  content: '✦';
+  position: absolute;
+  font-size: 20px;
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+}
+
+.book-frame::before {
+  top: 10px;
+  left: 15px;
+}
+
+.book-frame::after {
+  bottom: 10px;
+  right: 15px;
+}
+
+.book-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Book spine - leather bound effect */
+.book-spine {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 12px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, 
+    #1a0f0a 0%, 
+    #3d2817 20%, 
+    #5d4037 50%, 
+    #3d2817 80%, 
+    #1a0f0a 100%
+  );
+  box-shadow: 
+    0 0 20px rgba(0, 0, 0, 0.5),
+    inset 0 0 10px rgba(255, 215, 0, 0.1);
+  z-index: 5;
+}
+
+/* Gold binding lines on spine */
+.book-spine::before,
+.book-spine::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(180deg, transparent, #ffd700, transparent);
+  transform: translateX(-50%);
+}
+
+.book-spine::before { top: 20px; }
+.book-spine::after { bottom: 20px; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PARCHMENT PAGES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.scripture-page {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, 
+    #f5f0e1 0%, 
+    #e8dcc4 30%, 
+    #d4c5a9 70%, 
+    #c9b896 100%
+  );
+  box-shadow: inset 0 0 50px rgba(44, 24, 16, 0.15);
+}
+
+/* Left page */
+.scripture-page.left {
+  left: 0;
+  border-radius: 8px 0 0 8px;
+  border-left: 3px solid #b8860b;
+  border-top: 3px solid #b8860b;
+  border-bottom: 3px solid #b8860b;
+}
+
+/* Right page */
+.scripture-page.right {
+  right: 0;
+  border-radius: 0 8px 8px 0;
+  border-right: 3px solid #b8860b;
+  border-top: 3px solid #b8860b;
+  border-bottom: 3px solid #b8860b;
+}
+
+/* Page inner glow */
+.scripture-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 215, 0, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Page edge shadow (near spine) */
+.scripture-page.left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to left, 
+    rgba(44, 24, 16, 0.3) 0%, 
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.scripture-page.right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 100%;
+  background: linear-gradient(to right, 
+    rgba(44, 24, 16, 0.3) 0%, 
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Aged paper texture overlay */
+.page-texture {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PAGE CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.scripture-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 25px;
+  height: 100%;
+  text-align: center;
+}
+
+/* Ornate border around content */
+.scripture-inner-border {
+  position: absolute;
+  inset: 15px;
+  border: 2px solid rgba(184, 134, 11, 0.4);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Corner flourishes */
+.scripture-inner-border::before,
+.scripture-inner-border::after {
+  content: '❧';
+  position: absolute;
+  font-size: 14px;
+  color: #b8860b;
+  opacity: 0.6;
+}
+
+.scripture-inner-border::before {
+  top: -8px;
+  left: 10px;
+}
+
+.scripture-inner-border::after {
+  bottom: -8px;
+  right: 10px;
+  transform: rotate(180deg);
+}
+
+/* Quest artwork */
+.scripture-art {
+  width: 60%;
+  max-width: 180px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 3px solid #b8860b;
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(184, 134, 11, 0.3),
+    inset 0 0 20px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+}
+
+/* Illuminated initial letter */
+.scripture-initial {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: #b8860b;
+  text-shadow: 
+    2px 2px 0 #8b6914,
+    0 0 10px rgba(255, 215, 0, 0.3);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+/* Quest title */
+.scripture-title {
+  font-family: 'Cinzel', 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2c1810;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* Quest subtitle */
+.scripture-subtitle {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+  color: #5d4037;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Begin pilgrimage button */
+.scripture-btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #b8860b 0%, #8b6914 100%);
+  border: 2px solid #ffd700;
+  border-radius: 6px;
+  color: #f5f0e1;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 4px 15px rgba(184, 134, 11, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.scripture-btn:hover {
+  background: linear-gradient(135deg, #d4a017 0%, #b8860b 100%);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(184, 134, 11, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.scripture-btn:active {
+  transform: translateY(0);
+}
+
+/* Coming soon overlay */
+.scripture-coming-soon {
+  position: absolute;
+  inset: 0;
+  background: rgba(44, 24, 16, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+.coming-soon-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: #ffd700;
+  text-shadow: 0 0 10px #ffd700;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ffd700;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PAGE TURNING ANIMATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.turning-page {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    #f5f0e1 0%, 
+    #e8dcc4 30%, 
+    #d4c5a9 70%, 
+    #c9b896 100%
+  );
+  border: 3px solid #b8860b;
+  box-shadow: 
+    inset 0 0 50px rgba(44, 24, 16, 0.15),
+    0 0 30px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  pointer-events: none;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.turning-page.from-left {
+  left: 0;
+  transform-origin: right center;
+  border-radius: 8px 0 0 8px;
+}
+
+.turning-page.from-right {
+  right: 0;
+  transform-origin: left center;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Page turn animations */
+.book-stage.flipping-rtol .turning-page.from-right {
+  animation: pageTurnRight 0.6s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
+}
+
+.book-stage.flipping-ltor .turning-page.from-left {
+  animation: pageTurnLeft 0.6s cubic-bezier(0.4, 0.2, 0.2, 1) forwards;
+}
+
+@keyframes pageTurnRight {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(-90deg) translateZ(20px); }
+  100% { transform: rotateY(-178deg); }
+}
+
+@keyframes pageTurnLeft {
+  0% { transform: rotateY(0deg); }
+  50% { transform: rotateY(90deg) translateZ(20px); }
+  100% { transform: rotateY(178deg); }
+}
+
+/* Page turn particles */
+.page-turn-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 11;
+}
+
+.page-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #ffd700;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 8px #ffd700;
+}
+
+.book-stage.flipping-rtol .page-particle,
+.book-stage.flipping-ltor .page-particle {
+  animation: pageParticleBurst 0.6s ease-out forwards;
+}
+
+@keyframes pageParticleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx, 50px), var(--ty, -30px)) scale(0);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVIGATION CONTROLS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Container for nav buttons - positioned below the book for tour targeting */
+.book-nav-container {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 20px;
+  background: rgba(26, 15, 10, 0.8);
+  border: 2px solid #b8860b;
+  border-radius: 30px;
+  z-index: 20;
+}
+
+.nav-hint {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 12px;
+  color: #b8860b;
+  opacity: 0.8;
+}
+
+.book-nav {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #b8860b;
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f0a 100%);
+  color: #ffd700;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.book-nav:hover:not(:disabled) {
+  background: linear-gradient(135deg, #3d2817 0%, #2c1810 100%);
+  border-color: #ffd700;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(255, 215, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.book-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.book-nav:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+/* Page indicator */
+.page-indicator {
+  position: absolute;
+  bottom: -110px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 14px;
+  color: #b8860b;
+}
+
+.page-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.page-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(184, 134, 11, 0.3);
+  transition: all 0.3s ease;
+}
+
+.page-dot.active {
+  background: #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   EMPTY PAGE STATE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.scripture-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #8b7355;
+  font-family: 'Crimson Text', Georgia, serif;
+  font-style: italic;
+}
+
+.scripture-empty-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.scripture-empty-text {
+  font-size: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .sacred-flipbook {
+    width: 95vw;
+    height: 55vh;
+    margin-bottom: 90px;
+  }
+
+  .book-frame {
+    inset: -10px;
+    border-width: 3px;
+  }
+
+  .book-frame::before,
+  .book-frame::after {
+    font-size: 14px;
+  }
+
+  .scripture-content {
+    padding: 20px 15px;
+  }
+
+  .scripture-art {
+    width: 50%;
+    max-width: 120px;
+    margin-bottom: 12px;
+  }
+
+  .scripture-initial {
+    font-size: 32px;
+  }
+
+  .scripture-title {
+    font-size: 12px;
+  }
+
+  .scripture-subtitle {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .scripture-btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  /* Nav container on mobile */
+  .book-nav-container {
+    bottom: -55px;
+    padding: 8px 16px;
+    gap: 15px;
+  }
+
+  .nav-hint {
+    font-size: 11px;
+  }
+
+  .book-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .page-indicator {
+    bottom: -100px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sacred-flipbook {
+    height: 50vh;
+    margin-bottom: 85px;
+  }
+
+  .scripture-content {
+    padding: 15px 10px;
+  }
+
+  .scripture-inner-border {
+    inset: 8px;
+  }
+
+  .scripture-art {
+    width: 45%;
+    max-width: 90px;
+  }
+
+  .scripture-initial {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+
+  .scripture-title {
+    font-size: 11px;
+  }
+
+  .scripture-subtitle {
+    font-size: 10px;
+    margin-bottom: 10px;
+  }
+
+  .scripture-btn {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+
+  .book-nav-container {
+    bottom: -50px;
+    padding: 6px 14px;
+    gap: 12px;
+  }
+
+  .nav-hint {
+    font-size: 10px;
+  }
+
+  .book-nav {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .page-indicator {
+    bottom: -90px;
+    font-size: 11px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOVER GLOW EFFECT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.scripture-page:hover .scripture-content {
+  position: relative;
+}
+
+.scripture-page:hover::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 215, 0, 0.1) 0%,
+    transparent 70%
+  );
+}

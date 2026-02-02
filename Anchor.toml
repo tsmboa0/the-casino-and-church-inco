@@ -1,0 +1,22 @@
+[toolchain]
+package_manager = "yarn"
+
+[features]
+resolution = true
+skip-lint = false
+
+[programs.devnet]
+casino_n_church = "F9wygaMhPNWmCd6MMtZg7orv6ZkvuF4ycWopZ9cjq3Nc"
+
+[programs.localnet]
+casino_n_church = "F9wygaMhPNWmCd6MMtZg7orv6ZkvuF4ycWopZ9cjq3Nc"
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "devnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

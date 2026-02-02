@@ -1,0 +1,1151 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --av-primary: #ff2fb4;
+  --av-primary-light: #ff6fd4;
+  --av-secondary: #00f0ff;
+  --av-warning: #ffd700;
+  --av-danger: #ef4444;
+  --av-gold: #ffd700;
+  --av-cyan: #00f0ff;
+  --av-success: #22c55e;
+  --av-bg: #030308;
+  --av-surface: rgba(10, 10, 25, 0.95);
+  --av-border: rgba(255, 47, 180, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== PAGE CONTAINER ===== */
+.aviator-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--av-bg);
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Blur effect when modal is open */
+.aviator-page.modal-open .aviator-sky,
+.aviator-page.modal-open .aviator-header,
+.aviator-page.modal-open .aviator-game {
+  filter: blur(12px);
+  pointer-events: none;
+  transition: filter 0.4s ease;
+}
+
+/* ===== SKY BACKGROUND ===== */
+.aviator-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.sky-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #030308 0%,
+    #0a0a1a 20%,
+    #120a1a 40%,
+    #1a0a20 60%,
+    #0f0a15 100%
+  );
+}
+
+.sky-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 20% 30%, rgba(255, 47, 180, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.stars-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+.city-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: 
+    linear-gradient(90deg,
+      transparent 0%,
+      #0a0a1a 5%,
+      #0a0a1a 10%,
+      transparent 10%,
+      transparent 15%,
+      #0a0a1a 15%,
+      #0a0a1a 25%,
+      transparent 25%,
+      transparent 30%,
+      #0a0a1a 30%,
+      #0a0a1a 35%,
+      transparent 35%,
+      transparent 45%,
+      #0a0a1a 45%,
+      #0a0a1a 55%,
+      transparent 55%,
+      transparent 60%,
+      #0a0a1a 60%,
+      #0a0a1a 70%,
+      transparent 70%,
+      transparent 80%,
+      #0a0a1a 80%,
+      #0a0a1a 90%,
+      transparent 90%
+    );
+  background-size: 200px 100%;
+  opacity: 0.6;
+}
+
+.city-silhouette::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, #0a0a1a);
+}
+
+/* ===== CRASH FLASH ===== */
+.crash-flash {
+  position: fixed;
+  inset: 0;
+  background: rgba(239, 68, 68, 0.4);
+  z-index: 100;
+  animation: flashOut 0.3s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes flashOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ===== HEADER ===== */
+.aviator-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--av-surface);
+  border-bottom: 2px solid var(--av-primary);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(255, 47, 180, 0.15);
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--av-primary);
+  border-radius: 10px;
+  color: var(--av-primary);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 10px rgba(255, 47, 180, 0.3),
+    inset 0 0 10px rgba(255, 47, 180, 0.1);
+}
+
+.back-btn:hover {
+  background: rgba(255, 47, 180, 0.15);
+  box-shadow: 
+    0 0 20px rgba(255, 47, 180, 0.5),
+    0 0 40px rgba(255, 47, 180, 0.2),
+    inset 0 0 15px rgba(255, 47, 180, 0.2);
+  transform: scale(1.05);
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.game-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(11px, 2vw, 14px);
+  background: linear-gradient(90deg, var(--av-primary), var(--av-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 10px var(--av-primary));
+  letter-spacing: 0.1em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.balance-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--av-gold);
+  border-radius: 8px;
+}
+
+.balance-label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+}
+
+.balance-value {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 11px;
+  color: var(--av-gold);
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--av-border);
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icon-btn:hover,
+.icon-btn.active {
+  border-color: var(--av-primary);
+  box-shadow: 0 0 15px rgba(255, 47, 180, 0.4);
+}
+
+/* ===== MAIN GAME AREA ===== */
+.aviator-game {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  grid-template-rows: 1fr auto;
+  gap: 16px;
+  padding: 16px;
+  min-height: calc(100vh - 80px);
+}
+
+/* ===== FLIGHT CONTAINER ===== */
+.flight-container {
+  position: relative;
+  grid-row: 1;
+  grid-column: 1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--av-border);
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.curve-canvas,
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.curve-canvas {
+  z-index: 1;
+}
+
+.particle-canvas {
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ===== PLANE ===== */
+.plane-element {
+  position: absolute;
+  z-index: 2;
+  transition: left 0.1s linear, top 0.1s linear, transform 0.15s ease-out;
+  pointer-events: none;
+}
+
+.plane-element.countdown {
+  animation: planeRevving 0.5s ease-in-out infinite;
+}
+
+@keyframes planeRevving {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg) scale(1.1); }
+  50% { transform: translate(-50%, -50%) rotate(0deg) scale(1.15); }
+}
+
+.plane-element.crashing {
+  animation: planeCrash 0.6s ease-in forwards;
+}
+
+@keyframes planeCrash {
+  0% { filter: none; }
+  50% { filter: brightness(2) saturate(0.5); }
+  100% { filter: brightness(0.5) saturate(0); opacity: 0.5; }
+}
+
+.plane-img {
+  width: clamp(60px, 10vw, 100px);
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.5));
+}
+
+.plane-trail {
+  position: absolute;
+  right: 80%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 8px;
+  background: linear-gradient(90deg, transparent, rgba(255, 47, 180, 0.3), rgba(0, 240, 255, 0.6));
+  border-radius: 4px;
+  filter: blur(2px);
+  transition: opacity 0.3s ease;
+}
+
+.engine-glow {
+  position: absolute;
+  right: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.8), rgba(255, 47, 180, 0.5), transparent);
+  border-radius: 50%;
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.engine-glow.active {
+  opacity: 1;
+  animation: enginePulse 0.3s ease-in-out infinite;
+}
+
+@keyframes enginePulse {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-50%) scale(1.3); opacity: 1; }
+}
+
+/* ===== MULTIPLIER DISPLAY ===== */
+.multiplier-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 10;
+  text-align: center;
+  pointer-events: none;
+}
+
+.multiplier-value {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(40px, 10vw, 80px);
+  font-weight: 400;
+  text-shadow: 
+    0 0 40px currentColor,
+    0 0 80px currentColor;
+  transition: color 0.3s ease, transform 0.3s ease;
+  animation: multiplierPulse 1s ease-in-out infinite;
+}
+
+.multiplier-container.in-flight .multiplier-value {
+  animation: multiplierPulse 0.5s ease-in-out infinite;
+}
+
+.multiplier-value.crashed {
+  color: var(--av-danger) !important;
+  animation: crashShake 0.5s ease-in-out;
+}
+
+@keyframes multiplierPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes crashShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-10px); }
+  80% { transform: translateX(10px); }
+}
+
+.multiplier-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(10px, 2vw, 14px);
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.status-hint {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.countdown-number {
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(60px, 15vw, 100px);
+  color: var(--av-gold);
+  text-shadow: 0 0 40px var(--av-gold);
+  animation: countdownPop 1s ease-out infinite;
+}
+
+@keyframes countdownPop {
+  0% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+.multiplier-status.flying .status-text {
+  color: var(--av-primary);
+  animation: urgentBlink 0.5s ease-in-out infinite;
+}
+
+@keyframes urgentBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.multiplier-status.crashed .status-text {
+  color: var(--av-danger);
+}
+
+.crash-at {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: var(--av-danger);
+  opacity: 0.8;
+}
+
+/* ===== WIN POPUP ===== */
+.win-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 30px 50px;
+  background: rgba(255, 47, 180, 0.15);
+  border: 3px solid var(--av-primary);
+  border-radius: 20px;
+  z-index: 20;
+  animation: winPopIn 0.5s ease-out;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 60px rgba(255, 47, 180, 0.4);
+}
+
+@keyframes winPopIn {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.win-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  color: var(--av-primary);
+  text-shadow: 0 0 20px var(--av-primary);
+}
+
+.win-amount {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 28px;
+  color: var(--av-gold);
+  text-shadow: 0 0 30px var(--av-gold);
+}
+
+.win-mult {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ===== CONTROL PANEL ===== */
+.control-panel {
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--av-surface);
+  border: 1px solid var(--av-border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.bet-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.bet-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bet-group label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bet-input {
+  flex: 1;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid var(--av-border);
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  transition: border-color 0.3s ease;
+}
+
+.bet-input:focus {
+  outline: none;
+  border-color: var(--av-primary);
+  box-shadow: 0 0 15px rgba(255, 47, 180, 0.4);
+}
+
+.bet-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-suffix {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: var(--av-primary);
+}
+
+.adjust-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--av-border);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.adjust-btn:hover:not(:disabled) {
+  border-color: var(--av-primary);
+  box-shadow: 0 0 15px rgba(255, 47, 180, 0.4);
+}
+
+.adjust-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quick-bets {
+  display: flex;
+  gap: 8px;
+}
+
+.quick-btn {
+  flex: 1;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--av-border);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.quick-btn:hover:not(:disabled) {
+  border-color: var(--av-cyan);
+  color: var(--av-cyan);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.quick-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.quick-btn.max {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: var(--av-gold);
+  color: var(--av-gold);
+}
+
+/* ===== ACTION BUTTONS ===== */
+.action-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 24px;
+  border: none;
+  border-radius: 14px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-btn.bet {
+  background: linear-gradient(135deg, var(--av-primary), var(--av-primary-light));
+  color: #fff;
+  box-shadow: 0 8px 30px rgba(255, 47, 180, 0.4);
+}
+
+.action-btn.bet:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(255, 47, 180, 0.6);
+}
+
+.action-btn.bet:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.action-btn.cashout {
+  background: linear-gradient(135deg, var(--av-cyan), #00b8d4);
+  color: #000;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.4);
+  animation: cashoutPulse 0.8s ease-in-out infinite;
+}
+
+@keyframes cashoutPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 30px rgba(0, 240, 255, 0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 12px 40px rgba(0, 240, 255, 0.7); }
+}
+
+.action-btn.cashout:hover {
+  animation: none;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 240, 255, 0.6);
+}
+
+.action-btn.waiting {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-size: 18px;
+}
+
+.btn-text {
+  letter-spacing: 0.05em;
+}
+
+.claim-btn {
+  padding: 14px 20px;
+  background: rgba(255, 215, 0, 0.15);
+  border: 2px solid var(--av-gold);
+  border-radius: 12px;
+  color: var(--av-gold);
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.claim-btn:hover:not(:disabled) {
+  background: rgba(255, 215, 0, 0.25);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.claim-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===== SIDE PANEL ===== */
+.side-panel {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.history-section,
+.stats-section,
+.cashouts-section {
+  padding: 16px;
+  background: var(--av-surface);
+  border: 1px solid var(--av-border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.section-header {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: var(--av-primary);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--av-border);
+}
+
+.history-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.history-chip {
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--av-border);
+  border-radius: 6px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 9px;
+}
+
+.history-chip.low {
+  color: var(--av-danger);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.history-chip.medium {
+  color: var(--av-warning);
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+.history-chip.high {
+  color: var(--av-success);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.history-chip.extreme {
+  color: var(--av-cyan);
+  border-color: rgba(0, 212, 255, 0.4);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.empty {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.stat-row,
+.cashout-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stat-row:last-child,
+.cashout-row:last-child {
+  border-bottom: none;
+}
+
+.gold {
+  color: var(--av-gold);
+}
+
+.green {
+  color: var(--av-success);
+}
+
+.neon {
+  color: var(--av-primary);
+}
+
+.player {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mult {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  color: var(--av-primary);
+}
+
+/* ===== MODALS ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--av-surface);
+  border: 2px solid var(--av-primary);
+  border-radius: 20px;
+  padding: 30px;
+  max-width: 400px;
+  width: 100%;
+  animation: modalIn 0.3s ease-out;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-content h2 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: var(--av-primary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.rules-list li {
+  padding: 12px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.rules-list li::before {
+  content: '✈️';
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+}
+
+.rules-list li:last-child {
+  border-bottom: none;
+}
+
+.modal-close {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--av-primary), var(--av-primary-light));
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  box-shadow: 0 0 25px rgba(255, 47, 180, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .aviator-game {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .flight-container {
+    grid-row: 1;
+    grid-column: 1;
+    min-height: 300px;
+  }
+
+  .control-panel {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .side-panel {
+    grid-row: 3;
+    grid-column: 1;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .history-section,
+  .stats-section,
+  .cashouts-section {
+    flex: 1;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .aviator-header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 8px 10px;
+  }
+
+  .back-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .header-center {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+  }
+
+  .game-title {
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .balance-chip {
+    display: none;
+  }
+
+  .icon-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .balance-chip {
+    padding: 6px 10px;
+  }
+
+  .balance-value {
+    font-size: 10px;
+  }
+
+  .icon-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .flight-container {
+    min-height: 250px;
+  }
+
+  .multiplier-value {
+    font-size: clamp(32px, 12vw, 60px);
+  }
+
+  .countdown-number {
+    font-size: clamp(50px, 18vw, 80px);
+  }
+
+  .status-text {
+    font-size: 9px;
+  }
+
+  .plane-img {
+    width: clamp(50px, 12vw, 80px);
+  }
+
+  .control-panel {
+    padding: 14px;
+  }
+
+  .bet-section {
+    grid-template-columns: 1fr;
+  }
+
+  .bet-input {
+    padding: 10px 12px;
+    font-size: 11px;
+  }
+
+  .adjust-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .quick-btn {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+
+  .action-btn {
+    padding: 16px 20px;
+    font-size: 11px;
+  }
+
+  .side-panel {
+    flex-direction: column;
+  }
+
+  .history-section,
+  .stats-section,
+  .cashouts-section {
+    min-width: 100%;
+  }
+
+  .win-popup {
+    padding: 20px 30px;
+  }
+
+  .win-text {
+    font-size: 16px;
+  }
+
+  .win-amount {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 400px) {
+  .aviator-header {
+    padding: 6px 8px;
+  }
+
+  .back-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .game-title {
+    font-size: 8px;
+  }
+
+  .icon-btn {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .aviator-game {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .multiplier-value {
+    font-size: 28px;
+  }
+
+  .quick-bets {
+    flex-wrap: wrap;
+  }
+
+  .quick-btn {
+    flex: 0 0 calc(33% - 6px);
+  }
+}

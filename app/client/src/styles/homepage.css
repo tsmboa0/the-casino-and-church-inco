@@ -1,0 +1,1267 @@
+/* Import pixel font */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Loading Screen */
+.loading-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.pixel-loader {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  animation: blink 1s infinite;
+}
+
+/* Main Container */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #000;
+}
+
+/* Ensure homepage fills the viewport */
+.app-container:has(.homepage-container) {
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.homepage-container {
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+  font-family: 'Press Start 2P', cursive;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Background Image */
+.background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Game Title */
+.game-title {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.balance-icon {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.pixel-title {
+  font-size: clamp(16px, 4vw, 32px);
+  color: #fff;
+  text-shadow: 
+    2px 2px 0px #ff00ff,
+    4px 4px 0px #00ffff;
+  margin: 0;
+  letter-spacing: 2px;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.title-part {
+  color: #ffb347;
+}
+
+/* Split Container */
+.split-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  z-index: 50;
+}
+
+.desktop .split-container {
+  flex-direction: row;
+}
+
+.mobile .split-container {
+  flex-direction: column;
+}
+
+/* Side Containers */
+.side {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.side.hovered {
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+/* Center Intersection */
+.center-intersection {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intersection-symbol {
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: bold;
+  color: #ffb347;
+  text-shadow: 
+    2px 2px 0px #000,
+    4px 4px 0px #000,
+    0 0 10px #ffb347;
+  animation: intersectionGlow 3s ease-in-out infinite alternate;
+}
+
+/* Side Titles */
+.side-title {
+  position: absolute;
+  top: 100px;
+  z-index: 60;
+  text-align: center;
+}
+
+.side-title h2 {
+  font-size: clamp(20px, 5vw, 40px);
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 
+    2px 2px 0px #000,
+    4px 4px 0px #000,
+    6px 6px 0px #000;
+  letter-spacing: 3px;
+  animation: titleFloat 3s ease-in-out infinite;
+}
+
+.casino-title h2 {
+  color: #ff1493;
+  font-size: 60px;
+  text-shadow: 
+    2px 2px 0px #000,
+    4px 4px 0px #000,
+    6px 6px 0px #000,
+    0 0 10px #ff1493,
+    0 0 20px #ff1493;
+}
+
+.church-title h2 {
+  color: #ffb347;
+  font-size: 60px;
+  text-shadow: 
+    2px 2px 0px #000,
+    4px 4px 0px #000,
+    6px 6px 0px #000,
+    0 0 10px #ffb347,
+    0 0 20px #ffb347;
+}
+
+/* Side Content */
+.side-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  z-index: 50;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.8));
+  text-align: center;
+  margin-top: 80px;
+}
+
+/* Button Container - Positioned Lower */
+.button-container {
+  position: absolute;
+  bottom: 120px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.casino-button-container {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.church-button-container {
+  right: 50%;
+  transform: translateX(50%);
+}
+
+/* Avatars */
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.casino-avatar,
+.church-avatar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-body {
+  position: relative;
+}
+
+.casino-avatar .avatar-outfit {
+  position: relative;
+  width: 60px;
+  height: 80px;
+}
+
+.flashy-jacket {
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00);
+  border-radius: 10px;
+  animation: jacketShimmer 2s infinite linear;
+}
+
+.gold-chain {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 30px;
+  border: 3px solid #ffd700;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffd700, #ffb347);
+}
+
+.sol-tokens {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.token {
+  color: #ffd700;
+  font-size: 16px;
+  animation: tokenSpin 3s infinite linear;
+}
+
+.church-avatar .avatar-robes {
+  position: relative;
+  width: 60px;
+  height: 80px;
+}
+
+.digital-robe {
+  width: 100%;
+  height: 80%;
+  background: linear-gradient(to bottom, #4b0082, #191970);
+  border-radius: 0 0 15px 15px;
+  position: relative;
+}
+
+.digital-robe::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #ffd700, transparent);
+  animation: robeGlow 3s infinite ease-in-out;
+}
+
+.holy-hood {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 30px;
+  background: #2f1b69;
+  border-radius: 20px 20px 0 0;
+}
+
+.glowing-ledger {
+  position: relative;
+  margin-top: 10px;
+}
+
+.ledger {
+  font-size: 20px;
+  color: #ffd700;
+}
+
+.ledger-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.5), transparent);
+  animation: ledgerPulse 2s infinite ease-in-out;
+}
+
+/* Buttons */
+.enter-button {
+  position: relative;
+  padding: 5px 15px;
+  display: block;
+  border: none;
+  border-radius: 0;
+  font-family: 'Press Start 2P', cursive;
+  font-size: clamp(15px, 2vw, 20px);
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  overflow: hidden;
+  background: transparent;
+  border: 4px solid;
+  min-width: 200px;
+  image-rendering: pixelated;
+  box-shadow: 
+    0 0 0 2px #000,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.casino-button {
+  color: #ffb347;
+  border-color: #ff00ff;
+  background: linear-gradient(45deg, #8a2be2, #4b0082);
+  box-shadow: 
+    0 0 0 2px #000,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 4px 0 #4b0082;
+}
+
+.casino-button:hover {
+  background: linear-gradient(45deg, #9932cc, #6a0dad);
+  box-shadow: 
+    0 0 0 2px #000,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 4px 0 #6a0dad,
+    0 0 20px #ff00ff;
+  transform: translateY(-2px);
+}
+
+.church-button {
+  color: #ffb347;
+  border-color: #ffb347;
+  background: linear-gradient(45deg, #2f1b69, #1a0f3a);
+  box-shadow: 
+    0 0 0 2px #000,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 4px 0 #1a0f3a;
+}
+
+.church-button:hover {
+  background: linear-gradient(45deg, #4b0082, #2f1b69);
+  box-shadow: 
+    0 0 0 2px #000,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 4px 0 #2f1b69,
+    0 0 20px #ff00ff;
+  transform: translateY(-2px);
+}
+
+.button-icon {
+  margin-right: 10px;
+  font-size: 26px;
+}
+
+.button-text {
+  font-weight: 900;
+  text-shadow: 2px 2px 0px #000;
+}
+
+/* Tooltips */
+.tooltip {
+  font-size: clamp(8px, 1.5vw, 12px);
+  text-align: center;
+  padding: 8px;
+  border-radius: 0;
+  margin-top: 10px;
+  animation: tooltipGlow 3s infinite ease-in-out;
+  font-weight: bold;
+  /* background: rgba(0, 0, 0, 0.8); */
+}
+
+.casino-tooltip {
+  color: #ff1493;
+  border-color: #ff1493;
+}
+
+.church-tooltip {
+  color: #ffd700;
+  border-color: #ffd700;
+}
+
+/* Branding */
+.branding {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 30px;
+  z-index: 100;
+}
+
+.mobile .branding {
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  left: 12px;
+  right: 12px;
+  transform: none;
+  width: auto;
+}
+
+.solana-badge,
+.honeycomb-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #333;
+}
+
+.badge-text {
+  font-size: 8px;
+  color: #999;
+  font-weight: bold;
+}
+
+.solana-logo {
+  font-size: 10px;
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.honeycomb-logo {
+  font-size: 10px;
+  color: #ffb347;
+  font-weight: bold;
+}
+
+/* Audio Control - Homepage Only */
+.homepage-container .audio-control {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ffd700;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.homepage-container .audio-control:hover {
+  background: rgba(255, 215, 0, 0.2);
+  transform: scale(1.1);
+}
+
+/* Story Button - In Branding Section */
+.branding .story-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #ffb347;
+  color: #ffb347;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: storyButtonPulse 2s ease-in-out infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.branding .story-button:hover {
+  background: rgba(255, 179, 71, 0.2);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ffb347;
+  animation: storyButtonHover 0.5s ease-in-out;
+}
+
+/* Wallet Control */
+.wallet-control {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 200;
+}
+
+/* Audio Ready Indicator */
+.audio-ready-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 150;
+  background: rgba(0, 0, 0, 0.8);
+  color: #ffd700;
+  padding: 15px 25px;
+  border: 2px solid #ffd700;
+  border-radius: 5px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  text-align: center;
+  animation: audioReadyPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes audioReadyPulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 2px 2px 0px #ff00ff, 4px 4px 0px #00ffff; }
+  to { text-shadow: 2px 2px 0px #00ffff, 4px 4px 0px #ff00ff; }
+}
+
+@keyframes intersectionGlow {
+  from { text-shadow: 2px 2px 0px #000, 4px 4px 0px #000, 0 0 10px #ffb347; }
+  to { text-shadow: 2px 2px 0px #000, 4px 4px 0px #000, 0 0 20px #ffb347; }
+}
+
+@keyframes avatarBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes jacketShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes tokenSpin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+@keyframes robeGlow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes ledgerPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@keyframes tooltipGlow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+@keyframes titleFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes storyButtonPulse {
+  0%, 100% { 
+    opacity: 0.8; 
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(255, 179, 71, 0.3);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(255, 179, 71, 0.6);
+  }
+}
+
+@keyframes storyButtonHover {
+  0% { transform: scale(1.05); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1.05); }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE - TABLET
+   ======================================== */
+@media (max-width: 900px) {
+  .side-title h2 {
+    font-size: 40px;
+  }
+  
+  .casino-title h2,
+  .church-title h2 {
+    font-size: 40px;
+  }
+  
+  .enter-button {
+    font-size: 14px;
+    padding: 12px 20px;
+    min-width: 180px;
+  }
+  
+  .button-icon {
+    font-size: 20px;
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE - PHONES
+   ======================================== */
+@media (max-width: 768px) {
+  .homepage-container {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* Background adjustments for mobile image */
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  
+  /* Split container becomes vertical */
+  .split-container {
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 70px;
+    padding-bottom: 60px; /* Space for fixed branding */
+  }
+  
+  /* Each side uses flexbox with proper spacing */
+  .side {
+    flex: 1;
+    min-height: calc(50vh - 65px); /* Account for header and branding */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .casino-side {
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+  
+  .church-side {
+    padding-top: 10px;
+    padding-bottom: 50px; /* Extra space above fixed branding */
+  }
+  
+  /* Title at top */
+  .game-title {
+    top: 12px;
+    padding: 0 10px;
+  }
+  
+  .pixel-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  
+  /* Side titles - positioned at TOP of each section */
+  .side-title {
+    position: relative;
+    top: 0;
+    margin-bottom: 0;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+  
+  /* CHURCH title - push it up */
+  .church-title {
+    margin-top: 0;
+  }
+  
+  /* LARGER title sizes for mobile */
+  .side-title h2 {
+    font-size: 40px;
+    letter-spacing: 3px;
+  }
+  
+  .casino-title h2 {
+    font-size: 40px;
+  }
+  
+  .church-title h2 {
+    font-size: 40px;
+  }
+  
+  /* Hide center intersection on mobile */
+  .center-intersection {
+    display: none;
+  }
+  
+  /* Side content - takes remaining space */
+  .side-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sol-tokens {
+    gap: 8px;
+  }
+  
+  .token {
+    font-size: 18px;
+  }
+  
+  .ledger {
+    font-size: 24px;
+  }
+  
+  /* Button containers - at bottom of content area */
+  .button-container {
+    position: relative;
+    bottom: auto;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+  
+  .casino-button-container,
+  .church-button-container {
+    left: auto;
+    right: auto;
+    transform: none;
+  }
+  
+  /* Buttons */
+  .enter-button {
+    padding: 14px 24px;
+    font-size: 11px;
+    min-width: 200px;
+    letter-spacing: 1px;
+  }
+  
+  .button-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  
+  /* Tooltips - hide on mobile to save space */
+  .tooltip {
+    display: none;
+  }
+  
+  /* Branding - SPACE BETWEEN layout */
+  .branding {
+    position: fixed;
+    bottom: 10px;
+    left: 12px;
+    right: 12px;
+    transform: none;
+    flex-direction: row !important;
+    gap: 10px;
+    z-index: 200;
+    width: auto;
+    justify-content: space-between !important;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  
+  .solana-badge {
+    padding: 6px 10px;
+    flex-shrink: 0;
+  }
+  
+  .badge-text {
+    font-size: 6px;
+  }
+  
+  .solana-logo {
+    font-size: 8px;
+  }
+  
+  .branding .story-button {
+    font-size: 7px;
+    padding: 6px 10px;
+    flex-direction: row;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  
+  /* Audio control */
+  .homepage-container .audio-control {
+    top: 12px;
+    left: 12px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  
+  /* Wallet control */
+  .wallet-control {
+    top: 12px;
+    right: 12px;
+  }
+  
+  /* Audio ready indicator */
+  .audio-ready-indicator {
+    font-size: 9px;
+    padding: 10px 15px;
+    width: 80%;
+    max-width: 280px;
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE - SMALL PHONES
+   ======================================== */
+@media (max-width: 480px) {
+  .homepage-container {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  .split-container {
+    padding-top: 55px;
+    padding-bottom: 55px;
+  }
+  
+  .side {
+    padding: 10px 12px;
+    min-height: calc(50vh - 55px);
+  }
+  
+  .casino-side {
+    padding-top: 8px;
+    padding-bottom: 50px;
+  }
+  
+  .church-side {
+    padding-top: 8px;
+    padding-bottom: 15px; /* Space above fixed branding */
+  }
+  
+  /* Title */
+  .game-title {
+    top: 10px;
+  }
+  
+  .pixel-title {
+    font-size: 10px;
+  }
+  
+  /* Side titles - STILL BIG on small phones */
+  .side-title h2 {
+    font-size: 34px;
+    letter-spacing: 2px;
+  }
+  
+  .casino-title h2,
+  .church-title h2 {
+    font-size: 34px;
+  }
+  
+  /* CHURCH title */
+  .church-title {
+    margin-top: 0;
+  }
+  
+  /* Avatars */
+  .avatar-container {
+    margin-bottom: 8px;
+  }
+  
+  .sol-tokens {
+    gap: 6px;
+  }
+  
+  .token {
+    font-size: 14px;
+  }
+  
+  .ledger {
+    font-size: 20px;
+  }
+  
+  /* Buttons */
+  .enter-button {
+    padding: 12px 18px;
+    font-size: 10px;
+    min-width: 180px;
+  }
+  
+  .button-icon {
+    font-size: 16px;
+    margin-right: 6px;
+  }
+  
+  /* Tooltips - hidden on mobile */
+  .tooltip {
+    display: none;
+  }
+  
+  /* Branding - SPACE BETWEEN */
+  .branding {
+    bottom: 8px;
+    left: 10px;
+    right: 10px;
+    gap: 8px;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    justify-content: space-between !important;
+  }
+  
+  .solana-badge {
+    padding: 5px 8px;
+  }
+  
+  .badge-text {
+    font-size: 5px;
+  }
+  
+  .solana-logo {
+    font-size: 7px;
+  }
+  
+  .branding .story-button {
+    font-size: 6px;
+    padding: 5px 8px;
+  }
+  
+  /* Audio control */
+  .homepage-container .audio-control {
+    top: 10px;
+    left: 10px;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+  
+  /* Wallet control */
+  .wallet-control {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .audio-ready-indicator {
+    font-size: 8px;
+    padding: 8px 12px;
+  }
+}
+
+/* ========================================
+   MOBILE RESPONSIVE - VERY SMALL PHONES
+   ======================================== */
+@media (max-width: 360px) {
+  .split-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  
+  .side {
+    padding: 8px 10px;
+    min-height: calc(50vh - 50px);
+  }
+  
+  .casino-side {
+    padding-top: 5px;
+    padding-bottom: 12px;
+  }
+  
+  .church-side {
+    padding-top: 5px;
+    padding-bottom: 55px; /* Space above fixed branding */
+  }
+  
+  /* CHURCH title */
+  .church-title {
+    margin-top: 0;
+  }
+  
+  .pixel-title {
+    font-size: 9px;
+  }
+  
+  /* Keep titles visible even on tiny phones */
+  .side-title h2,
+  .casino-title h2,
+  .church-title h2 {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  
+  .enter-button {
+    padding: 10px 14px;
+    font-size: 9px;
+    min-width: 160px;
+  }
+  
+  .button-icon {
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  
+  /* Tooltips hidden */
+  .tooltip {
+    display: none;
+  }
+  
+  .homepage-container .audio-control {
+    width: 30px;
+    height: 30px;
+    font-size: 12px;
+  }
+  
+  .token {
+    font-size: 12px;
+  }
+  
+  .ledger {
+    font-size: 16px;
+  }
+  
+  /* Branding - SPACE BETWEEN on tiny phones */
+  .branding {
+    gap: 6px;
+    left: 8px;
+    right: 8px;
+    bottom: 6px;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+  }
+  
+  .solana-badge {
+    padding: 4px 6px;
+  }
+  
+  .badge-text {
+    font-size: 4px;
+  }
+  
+  .solana-logo {
+    font-size: 6px;
+  }
+  
+  .branding .story-button {
+    font-size: 5px;
+    padding: 4px 6px;
+  }
+}
+
+/* ========================================
+   LANDSCAPE MOBILE
+   ======================================== */
+@media (max-width: 900px) and (orientation: landscape) {
+  .homepage-container {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  
+  .split-container {
+    flex-direction: row;
+    min-height: 100vh;
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+  
+  .side {
+    flex: 1;
+    min-height: auto;
+    padding: 10px;
+  }
+  
+  .side-title {
+    margin-bottom: 10px;
+  }
+  
+  .side-title h2,
+  .casino-title h2,
+  .church-title h2 {
+    font-size: 20px;
+  }
+  
+  .side-content {
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .button-container {
+    margin-top: 10px;
+  }
+  
+  .enter-button {
+    padding: 10px 16px;
+    font-size: 9px;
+    min-width: 140px;
+  }
+  
+  .button-icon {
+    font-size: 14px;
+  }
+  
+  .tooltip {
+    display: none;
+  }
+  
+  .branding {
+    bottom: 5px;
+  }
+  
+  .center-intersection {
+    display: flex;
+    top: 50%;
+  }
+  
+  .intersection-symbol {
+    font-size: 18px;
+  }
+}
+
+/* ========================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ======================================== */
+@media (hover: none) and (pointer: coarse) {
+  .side.hovered {
+    transform: none;
+  }
+  
+  .enter-button:hover {
+    transform: none;
+  }
+  
+  .enter-button:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+  
+  .casino-button:active {
+    box-shadow: 
+      0 0 0 2px #000,
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 2px 0 #4b0082,
+      0 0 20px #ff00ff;
+  }
+  
+  .church-button:active {
+    box-shadow: 
+      0 0 0 2px #000,
+      inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+      0 2px 0 #1a0f3a,
+      0 0 20px #ff00ff;
+  }
+  
+  .homepage-container .audio-control:active {
+    transform: scale(0.95);
+  }
+  
+  .branding .story-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* ========================================
+   SAFE AREA INSETS (Notch devices)
+   ======================================== */
+@supports (padding: max(0px)) {
+  .homepage-container {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+  
+  .branding {
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  
+  @media (max-width: 480px) {
+    .branding {
+      bottom: max(8px, env(safe-area-inset-bottom));
+    }
+  }
+}
+
+/* ========================================
+   HIGH DPI / RETINA DISPLAYS
+   ======================================== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .background-image img {
+    image-rendering: -webkit-optimize-contrast;
+  }
+}
+
+
+
+

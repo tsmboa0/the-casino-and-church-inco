@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "types": [
+      "mocha",
+      "chai",
+      "node"
+    ],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "lib": [
+      "es2015"
+    ],
+    "module": "node16",
+    "moduleResolution": "node16",
+    "target": "es2015",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "tests/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,14 @@
+.anchor
+.DS_Store
+target
+**/*.rs.bk
+node_modules
+test-ledger
+.yarn
+
+dist
+server/public
+vite.config.ts.*
+*.tar.gz
+.env
+honeycomb.json

@@ -1,0 +1,654 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* CSS Variables for theming */
+:root {
+  --church-gold: #ffd700;
+  --church-yellow: #ffed4e;
+  --church-dark-gray: #2c2c2c;
+  --church-light-gray: #4a4a4a;
+  --church-parchment: #f4f1e8;
+  --church-ink: #1a1a1a;
+  --church-shadow: rgba(0, 0, 0, 0.6);
+  --church-glow: rgba(255, 215, 0, 0.3);
+}
+
+/* Main container with church background */
+.quest-page-container {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Church background */
+.quest-page-container .church-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.quest-page-container .church-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.quest-page-container .church-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: -1;
+}
+
+/* Back button */
+.quest-page-container .back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  background: var(--church-dark-gray);
+  border: 2px solid var(--church-gold);
+  color: var(--church-gold);
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--church-shadow);
+}
+
+.quest-page-container .back-button:hover {
+  background: var(--church-gold);
+  color: var(--church-dark-gray);
+  box-shadow: 0 0 20px var(--church-glow);
+  transform: translateY(-2px);
+}
+
+.quest-page-container .back-icon {
+  font-size: 14px;
+}
+
+.quest-page-container .back-text {
+  font-size: 8px;
+}
+
+/* Hero Section - Full Width */
+.quest-page-container .quest-hero-section {
+  width: 100%;
+  padding: 100px 20px 40px;
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 3px solid var(--church-gold);
+  box-shadow: 0 4px 20px var(--church-shadow);
+}
+
+.quest-page-container .hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.quest-page-container .hero-image {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  border: 4px solid var(--church-gold);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px var(--church-shadow);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.quest-page-container .hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.quest-page-container .hero-text {
+  flex: 1;
+  color: var(--church-parchment);
+}
+
+.quest-page-container .hero-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px;
+  color: var(--church-gold);
+  margin: 0 0 20px;
+  text-shadow: 0 0 15px var(--church-glow);
+  line-height: 1.3;
+}
+
+.quest-page-container .hero-description {
+  font-size: 18px;
+  color: var(--church-parchment);
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Section - Flex Layout */
+.quest-page-container .quest-main-section {
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.quest-page-container .quest-flex-layout {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  min-height: 70vh;
+}
+
+/* Scroll Section - 50% Left */
+.quest-page-container .scroll-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.quest-page-container .quest-scroll {
+  background: url('/textures/old-scroll.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 80px 100px 60px;
+  box-shadow: 0 20px 40px var(--church-shadow);
+}
+
+
+/* Scroll Header */
+.quest-page-container .scroll-header {
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 3px solid var(--church-gold);
+  padding-bottom: 20px;
+}
+
+.quest-page-container .mission-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 20px;
+  color: var(--church-ink);
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+}
+
+/* Scroll Content */
+.quest-page-container .scroll-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+
+.quest-page-container .section-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 14px;
+  color: var(--church-ink);
+  margin: 0 0 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+}
+
+.quest-page-container .requirements-section {
+  margin-bottom: 40px;
+}
+
+.quest-page-container .steps-section {
+  margin-bottom: 20px;
+}
+
+/* Requirements list */
+.quest-page-container .requirements-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quest-page-container .requirement-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  font-size: 16px;
+  color: var(--church-ink);
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+.quest-page-container .requirement-marker {
+  color: var(--church-gold);
+  font-size: 20px;
+  margin-right: 15px;
+  margin-top: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Steps list */
+.quest-page-container .steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step-counter;
+}
+
+.quest-page-container .step-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: var(--church-ink);
+  line-height: 1.6;
+  font-weight: 600;
+  counter-increment: step-counter;
+}
+
+.quest-page-container .step-number {
+  background: var(--church-gold);
+  color: var(--church-ink);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  margin-right: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  font-weight: bold;
+}
+
+.quest-page-container .step-number::before {
+  content: counter(step-counter);
+}
+
+/* Proof Section - 50% Right */
+.quest-page-container .proof-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.quest-page-container .proof-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(44, 44, 44, 0.95) 0%,
+    rgba(74, 74, 74, 0.9) 100%
+  );
+  border: 3px solid var(--church-gold);
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 
+    0 20px 40px var(--church-shadow),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 500px;
+}
+
+.quest-page-container .proof-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 16px;
+  color: var(--church-gold);
+  margin: 0 0 15px;
+  text-align: center;
+  text-shadow: 0 0 10px var(--church-glow);
+  letter-spacing: 1px;
+}
+
+.quest-page-container .proof-subtitle {
+  color: var(--church-parchment);
+  font-size: 14px;
+  text-align: center;
+  margin: 0 0 30px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+/* Form styling */
+.quest-page-container .proof-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.quest-page-container .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quest-page-container .form-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  color: var(--church-gold);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.quest-page-container .form-input,
+.quest-page-container .form-textarea {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid var(--church-light-gray);
+  border-radius: 8px;
+  padding: 15px 18px;
+  color: var(--church-parchment);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
+  font-weight: 500;
+}
+
+.quest-page-container .form-input:focus,
+.quest-page-container .form-textarea:focus {
+  border-color: var(--church-gold);
+  box-shadow: 0 0 15px var(--church-glow);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.quest-page-container .form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.quest-page-container .submit-button {
+  background: linear-gradient(
+    135deg,
+    var(--church-gold) 0%,
+    var(--church-yellow) 100%
+  );
+  color: var(--church-ink);
+  border: none;
+  border-radius: 10px;
+  padding: 18px 30px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--church-shadow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.quest-page-container .submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px var(--church-shadow),
+    0 0 20px var(--church-glow);
+  background: linear-gradient(
+    135deg,
+    var(--church-yellow) 0%,
+    var(--church-gold) 100%
+  );
+}
+
+.quest-page-container .submit-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px var(--church-shadow);
+}
+
+/* Quest not found */
+.quest-page-container .quest-not-found {
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 3px solid var(--church-gold);
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.quest-page-container .quest-not-found .quest-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 18px;
+  color: var(--church-gold);
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px var(--church-glow);
+}
+
+.quest-page-container .quest-not-found p {
+  color: var(--church-parchment);
+  font-size: 16px;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .quest-page-container .quest-flex-layout {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .quest-page-container .scroll-section,
+  .quest-page-container .proof-section {
+    flex: none;
+  }
+  
+  .quest-page-container .quest-scroll {
+    height: 60vh;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quest-page-container .quest-hero-section {
+    padding: 80px 15px 30px;
+  }
+  
+  .quest-page-container .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 25px;
+  }
+  
+  .quest-page-container .hero-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .quest-page-container .hero-title {
+    font-size: 18px;
+  }
+  
+  .quest-page-container .hero-description {
+    font-size: 16px;
+  }
+  
+  .quest-page-container .quest-main-section {
+    padding: 30px 15px;
+  }
+  
+  .quest-page-container .quest-flex-layout {
+    gap: 20px;
+  }
+  
+  .quest-page-container .quest-scroll {
+    height: 50vh;
+    min-height: 400px;
+    padding: 30px 40px 25px;
+  }
+  
+  .quest-page-container .scroll-content {
+    padding: 0 10px;
+  }
+  
+  .quest-page-container .mission-title {
+    font-size: 16px;
+  }
+  
+  .quest-page-container .section-title {
+    font-size: 12px;
+  }
+  
+  .quest-page-container .requirement-item,
+  .quest-page-container .step-item {
+    font-size: 14px;
+  }
+  
+  .quest-page-container .requirement-marker {
+    font-size: 18px;
+    margin-right: 12px;
+  }
+  
+  .quest-page-container .step-number {
+    width: 28px;
+    height: 28px;
+    font-size: 10px;
+    margin-right: 15px;
+  }
+  
+  .quest-page-container .proof-panel {
+    padding: 30px;
+  }
+  
+  .quest-page-container .proof-title {
+    font-size: 14px;
+  }
+  
+  .quest-page-container .form-label {
+    font-size: 10px;
+  }
+  
+  .quest-page-container .form-input,
+  .quest-page-container .form-textarea {
+    font-size: 13px;
+    padding: 12px 15px;
+  }
+  
+  .quest-page-container .submit-button {
+    font-size: 10px;
+    padding: 15px 25px;
+  }
+  
+  .quest-page-container .back-button {
+    top: 15px;
+    left: 15px;
+    padding: 10px 15px;
+  }
+  
+  .quest-page-container .back-text {
+    font-size: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .quest-page-container .quest-hero-section {
+    padding: 70px 10px 25px;
+  }
+  
+  .quest-page-container .hero-image {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .quest-page-container .hero-title {
+    font-size: 16px;
+  }
+  
+  .quest-page-container .hero-description {
+    font-size: 14px;
+  }
+  
+  .quest-page-container .quest-main-section {
+    padding: 20px 10px;
+  }
+  
+  .quest-page-container .quest-scroll {
+    height: 45vh;
+    min-height: 350px;
+    padding: 25px 30px 20px;
+  }
+  
+  .quest-page-container .scroll-content {
+    padding: 0 8px;
+  }
+  
+  .quest-page-container .mission-title {
+    font-size: 14px;
+  }
+  
+  .quest-page-container .section-title {
+    font-size: 10px;
+  }
+  
+  .quest-page-container .requirement-item,
+  .quest-page-container .step-item {
+    font-size: 12px;
+  }
+  
+  .quest-page-container .step-number {
+    width: 24px;
+    height: 24px;
+    font-size: 9px;
+    margin-right: 12px;
+  }
+  
+  .quest-page-container .requirement-marker {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .quest-page-container .proof-panel {
+    padding: 25px;
+  }
+  
+  .quest-page-container .proof-title {
+    font-size: 12px;
+  }
+  
+  .quest-page-container .form-label {
+    font-size: 8px;
+  }
+  
+  .quest-page-container .form-input,
+  .quest-page-container .form-textarea {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+  
+  .quest-page-container .submit-button {
+    font-size: 8px;
+    padding: 12px 20px;
+  }
+  
+  .quest-page-container .back-button {
+    top: 10px;
+    left: 10px;
+    padding: 8px 12px;
+  }
+  
+  .quest-page-container .back-text {
+    font-size: 6px;
+  }
+}
