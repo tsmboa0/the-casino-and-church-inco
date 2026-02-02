@@ -379,32 +379,6 @@ VITE_PROGRAM_ID=F9wygaMhPNWmCd6MMtZg7orv6ZkvuF4ycWopZ9cjq3Nc
 
 ## 🗺️ Roadmap
 
-```mermaid
-gantt
-    title Casino & Church Development Roadmap
-    dateFormat  YYYY-Q
-    
-    section Phase 1 - Foundation
-    Core Casino Games (FHE)      :done, p1a, 2024-Q4, 90d
-    Confidential Reveal Flow     :done, p1b, after p1a, 30d
-    Claim Rewards System         :done, p1c, after p1b, 30d
-    
-    section Phase 2 - Church
-    Writing Quests              :active, p2a, 2025-Q1, 60d
-    Prophecy System             :p2b, after p2a, 45d
-    LUCK/FAITH Integration      :p2c, after p2b, 30d
-    
-    section Phase 3 - Privacy++
-    Confidential SPL Token      :p3a, 2025-Q2, 90d
-    Hidden Bet Amounts          :p3b, after p3a, 30d
-    Full Transaction Privacy    :p3c, after p3b, 45d
-    
-    section Phase 4 - Scale
-    Mainnet Launch              :p4a, 2025-Q3, 30d
-    Mobile App                  :p4b, after p4a, 90d
-    Cross-Chain Bridge          :p4c, after p4b, 60d
-```
-
 ### Phase 1: Foundation ✅
 - [x] Encrypted coinflip, roulette, slots, aviator
 - [x] Confidential reveal modal with storytelling UX
